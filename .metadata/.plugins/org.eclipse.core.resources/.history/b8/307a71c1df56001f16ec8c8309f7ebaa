@@ -1,0 +1,26 @@
+package org.SeleniumWebTable.WebTable.testing;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class PaginationWebTable {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+		driver.get("https://demo.opencart.com/admin/index.php?route=common/dashboard&user_token=5e1e76ffcff17e9cc5d972da0de228f2");
+
+		driver.manage().window().maximize();
+
+		Thread.sleep(5000);
+	
+	} 
+}

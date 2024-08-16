@@ -1,0 +1,78 @@
+package org.SeleniumWebTable.WebTable.testing;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class DatePickerDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+		// driver.get("https://www.w3schools.com/html/html_tables.asp");
+		driver.get("https://jqueryui.com/datepicker");
+
+		driver.manage().window().maximize();
+
+		Thread.sleep(1000);
+
+		driver.switchTo().frame(0);
+
+		// Using sendkeys
+
+		// driver.findElement(By.xpath("//input[@id=\"datepicker\"]")).sendKeys("04/08/2024");
+
+		// using date picker
+
+		String year = "2025";
+		String month = "May";
+		String day = "25";
+
+		driver.findElement(By.xpath("//input[@id=\"datepicker\"]")).click();
+
+		while (true) {
+			String CalYear = driver.findElement(By.xpath("//span[@class=\"ui-datepicker-year\"]")).getText();
+
+			String CalMonth = driver.findElement(By.xpath("//span[@class=\"ui-datepicker-month\"]")).getText();
+
+			if (CalMonth.equals(month) && CalYear.equals(year)) {
+				break;
+			}
+			driver.findElement(By.xpath("//a[@title = \"Next\"]")).click();
+		}
+
+		int rowCount = driver.findElements(By.xpath("//table[@class = \"ui-datepicker-calendar\"]//tr")).size();
+
+		int colCount = driver.findElements(By.xpath("//table[@class = \"ui-datepicker-calendar\"]//th")).size();
+		
+		System.out.println(rowCount + "  " + colCount);
+
+		for (int r = 1; r <= rowCount; r++) {
+
+			if (r > 1) {
+
+				for (int c = 1; c <= colCount; c++) {
+
+					String CalDate = driver
+							.findElement(By.xpath(
+									"//table[@class = \"ui-datepicker-calendar\"]//tbody//tr[" + r + "]//td[" + c + "]"))
+							.getText();
+
+					if (CalDate.equals(day)) {
+						driver.findElement(
+								By.xpath("//table[@class = \"ui-datepicker-calendar\"]//tbody//tr[" + r + "]//td[" + c + "]"))
+								.click();
+					}
+				}
+			}
+		}
+
+	}
+}

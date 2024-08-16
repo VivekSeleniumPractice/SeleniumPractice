@@ -1,0 +1,11 @@
+package org.SeleniumWebTable.WebTable.testing;
+
+public class MouseActionsDemo {
+
+	public static void main(String[] args) {
+
+     WebDriver driver = new ChromeDriver();
+
+	}
+
+}

@@ -1,0 +1,60 @@
+package org.SeleniumWebTable.WebTable.testing;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class DatePickerMakeMyTrip {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		String year = "2020";
+		String month = "January";
+		String day = "25";
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+		driver.get("https://www.makemytrip.com/");
+
+		driver.manage().window().maximize();
+
+		Thread.sleep(5000);
+
+		SelectDate(driver, year, month, day);
+
+	}
+	public static void SelectDate(WebDriver driver, String Year, String Month, String Date) {
+
+		driver.findElement(By.xpath("//div[@class=\"flt_fsw_inputBox dates inactiveWidget \"]")).click();
+
+		while (true) {
+			
+			String CalYearText = driver.findElement(By.xpath("//div[@class=\"DayPicker-Month\"][1]/child::div[1]//div")).getText();
+			
+			String[] CalMonthYearText = CalYearText.split(" ");
+			
+	if (CalMonthYearText[0].equals(Month) && CalMonthYearText[1].equals(Year)) {
+		
+	}
+
+			}
+
+		// Select date
+		/*List<WebElement> AllDates = driver
+				.findElements(By.xpath("//table[@class=\"ui-datepicker-calendar\"]//tbody//tr//a"));
+
+		for (WebElement date : AllDates) {
+			if (date.getText().equals(Date)) {
+				date.click();
+				break;
+			}
+		}*/
+	}
+
+}

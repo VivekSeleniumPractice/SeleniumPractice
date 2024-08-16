@@ -1,0 +1,20 @@
+package org.SeleniumWebTable.WebTable.testing;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class MouseActionsDemo {
+
+	public static void main(String[] args) {
+
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("https://testsigma.com/blog/action-class-in-selenium/");
+		
+		driver.manage().window().maximize();
+		
+		
+
+	}
+
+}

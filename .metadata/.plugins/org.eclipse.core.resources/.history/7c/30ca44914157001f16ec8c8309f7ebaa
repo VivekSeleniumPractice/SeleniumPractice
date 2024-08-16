@@ -1,0 +1,27 @@
+package org.SeleniumWebTable.WebTable.testing;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class DatePickerDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+		// driver.get("https://www.w3schools.com/html/html_tables.asp");
+		driver.get("https://demo.opencart.com/admin/index.php");
+
+		driver.manage().window().maximize();
+
+		Thread.sleep(5000);
+
+	}
+}

@@ -1,0 +1,53 @@
+package org.SeleniumWebTable.WebTable.testing;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class PaginationWebTable {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+		driver.get("https://testautomationpractice.blogspot.com/");
+
+		driver.manage().window().maximize();
+
+		Thread.sleep(5000);
+
+		String LastPage = driver.findElement(By.xpath("//div[@id=\"HTML8\"]//ul//a[text()=\"4\"]")).getText();
+
+		int PageLast = Integer.parseInt(LastPage);
+
+		System.out.println(PageLast);
+
+		int RowSize = driver.findElements(By.xpath("//div[@id=\"HTML8\"]//tr//th")).size();
+		System.out.println(RowSize);
+
+		int ColSize = driver.findElements(By.xpath("//div[@id=\"HTML8\"]//tr//th")).size();
+		System.out.println(ColSize);
+
+		for (int i = 1; i <= PageLast; i++) {
+			driver.findElement(By.xpath("//div[@id=\"HTML8\"]//ul//a[text()=" + i + "]")).click();
+			for (int r = 2; r <= RowSize; r++) {
+				for (int j = 1; j <= ColSize; j++) {
+					List<WebElement> TableField = driver
+							.findElements(By.xpath("//div[@id=\"HTML8\"]//tr[" + i + "]//td[" + j + "]"));
+					for (WebElement Field : TableField) {
+						String FieldValues = Field.getText();
+						System.out.printf("%-20s", FieldValues);
+					}
+				}
+				System.out.println();
+			}
+		}
+		driver.quit();
+	}
+}
